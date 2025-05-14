@@ -1,0 +1,28 @@
+{
+  "name": "whatsapp-bulk-sender",
+  "version": "1.0.0",
+  "description": "A tool to send WhatsApp messages with attachments to multiple contacts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "validate": "node src/cli.js validate",
+    "convert": "node src/cli.js convert",
+    "check": "node src/cli.js check",
+    "auth": "node checkAuthentication.js",
+    "clear-cache": "node checkAuthentication.js --clear-cache"
+  },
+  "bin": {
+    "wa-sender": "./src/cli.js"
+  },
+  "dependencies": {
+    "whatsapp-web.js": "^1.23.0",
+    "qrcode-terminal": "^0.12.0",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "commander": "^11.1.0",
+    "puppeteer": "^21.5.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

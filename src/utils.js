@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const csv = require('csv-parser');
 const { createObjectCsvWriter } = require('csv-writer');
 
@@ -10,22 +9,40 @@ const { createObjectCsvWriter } = require('csv-writer');
  * @returns {boolean} - Whether the number is valid
  */
 function validateIndianPhoneNumber(phoneNumber, countryCode = '91') {
+  if (!phoneNumber) return false;
+
   // Remove non-numeric characters
   const cleanNumber = phoneNumber.toString().replace(/\D/g, '');
 
-  // Check if it's a valid Indian mobile number
-  // Indian mobile numbers are typically 10 digits
-  // When adding country code, it becomes 12 or 13 digits
+  // Strict validation for Indian mobile numbers
+  // Valid formats:
+  // 1. 10 digits starting with 6, 7, 8, or 9 (without country code)
+  // 2. Country code (91) + 10 digits starting with 6, 7, 8, or 9
+  // 3. 0 + 10 digits starting with 6, 7, 8, or 9
+
+  // First, check the length based on format
+  let isValidLength = false;
+  let baseNumber = '';
+
   if (cleanNumber.startsWith(countryCode)) {
-    // If number includes country code, it should be 12 digits (91 + 10 digits)
-    return cleanNumber.length === countryCode.length + 10;
+    // Format: 91XXXXXXXXXX
+    isValidLength = cleanNumber.length === countryCode.length + 10;
+    baseNumber = cleanNumber.substring(countryCode.length);
   } else if (cleanNumber.startsWith('0')) {
-    // If number starts with 0, it should be 11 digits (0 + 10 digits)
-    return cleanNumber.length === 11;
+    // Format: 0XXXXXXXXXX
+    isValidLength = cleanNumber.length === 11;
+    baseNumber = cleanNumber.substring(1);
   } else {
-    // If number doesn't have country code or starting 0, it should be 10 digits
-    return cleanNumber.length === 10;
+    // Format: XXXXXXXXXX (without prefix)
+    isValidLength = cleanNumber.length === 10;
+    baseNumber = cleanNumber;
   }
+
+  // Check if the number starts with a valid Indian mobile prefix (6, 7, 8, or 9)
+  const hasValidPrefix = baseNumber.length === 10 && /^[6-9]/.test(baseNumber);
+
+  // Number is valid if it has the correct length and starts with a valid prefix
+  return isValidLength && hasValidPrefix;
 }
 
 /**

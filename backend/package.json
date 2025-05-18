@@ -1,0 +1,40 @@
+{
+  "name": "whatsapp-bulk-sender-backend",
+  "version": "1.0.0",
+  "description": "Backend server for WhatsApp bulk message sender",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js send",
+    "resume": "node src/index.js resume",
+    "status": "node src/index.js status",
+    "failed": "node src/index.js failed",
+    "retry": "node src/index.js retry-failed",
+    "api": "node src/api/server.js",
+    "dev": "nodemon src/api/server.js"
+  },
+  "keywords": [
+    "whatsapp",
+    "bulk",
+    "sender",
+    "messaging"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "bin": {
+    "wa-sender": "./src/index.js"
+  },
+  "type": "commonjs"
+}

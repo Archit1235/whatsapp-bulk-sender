@@ -1,30 +1,54 @@
+# WhatsApp Web.js authentication
+.wwebjs_auth/
+backend/.wwebjs_auth/
+
 # Node.js dependencies
 node_modules/
-package-lock.json
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log
 
 # Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# User Data
-data/
-!data/phone_numbers_sample.csv
+# Data files
+backend/data/logs/
+backend/data/attachments/
+backend/data/*.csv
+backend/data/temp-*.csv
 
-# Application specific
-.wwebjs_auth/
-.wwebjs_cache/
+# Next.js
+/dashboard/.next/
+/dashboard/out/
+/dashboard/build/
+/dashboard/.vercel/
 
-# OS specific files
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
 .DS_Store
-Thumbs.db
 
 # Logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo 
+# Build files
+dist/
+build/
+.cache/
+
+# Keep blank directories with .gitkeep
+!backend/data/.gitkeep
+!backend/data/logs/.gitkeep
+!backend/data/attachments/.gitkeep
+!backend/data/logs/sessions/.gitkeep 

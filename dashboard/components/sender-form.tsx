@@ -1,13 +1,10 @@
 'use client';
 
+import { toast } from 'sonner';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Loader2, Upload, Send, FileText, Paperclip } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
@@ -16,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Dialog,
   DialogContent,
@@ -25,10 +21,14 @@ import {
   DialogDescription,
   DialogFooter,
 } from '@/components/ui/dialog';
-import { WhatsAppAuth } from '@/components/whatsapp-auth';
 import apiService from '@/lib/api';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 import { Toaster } from '@/components/ui/sonner';
-import { toast } from 'sonner';
+import { Separator } from '@/components/ui/separator';
+import { WhatsAppAuth } from '@/components/whatsapp-auth';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function SenderForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -307,7 +307,7 @@ export function SenderForm() {
                       {csvFile ? csvFile.name : 'Click to upload CSV'}
                     </span>
                     <span className='text-xs text-muted-foreground mt-1'>
-                      CSV with a column named 'phone'
+                      CSV with a column named &apos;phone&apos;
                     </span>
                   </Button>
                   <input
